@@ -51,27 +51,21 @@ router.post('/searchProductdetailId', (req, res) => {
   var params = req.body;
   var obj = {};
   var com = [];
-  //var a="";
-  //console.log(params);
-  //var str=number
+  var small = [];
   conn.query(sql, [params.productId], function (err, result) {
     if (err) {
       console.log(err);
     }
     if (result.length) {
-      //console.log(result)
-      //console.log(result[0].productimgurl);
-      //imgurl = result[0].productimgurl;
       obj = result[0]
       com = JSON.parse(obj.comment).slice(0, 2);
-      //a=typeof(com);
-      //console.log(com);
+      small = JSON.parse(obj.productsize).slice(0, 10);
       res.json({
         status: 0,
         msg: "查询成功",
-        //result
         obj,
-        com
+        com,
+        small
       });
     } else {
       res.json({
