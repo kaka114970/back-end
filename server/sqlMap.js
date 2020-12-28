@@ -12,7 +12,8 @@ var sqlMap = {
     searchId: "select * from user where userId = ?",
     login: "select * from user where phone = ? and password = ?",
     searchUsername: "select * from user where username = ?",
-    loginphone:"select * from user where phone = ?"
+    loginphone:"select * from user where phone = ?",
+    updatapassword:"UPDATE `test`.`user` SET password = ? WHERE phone = ?"
   },
   Remark: {
     add: 'insert into remark(userId,datetime,remark,grade) values(?, ?, ?, ?)'

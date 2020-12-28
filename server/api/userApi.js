@@ -49,6 +49,36 @@ router.post('/loginUser', (req, res) => {
     }
   });
 })
+
+//修改密码
+router.post('/updataUser', (req, res) => {
+  var sql = $sql.user.updatapassword;
+  var params = req.body;
+  var obj = {};
+  conn.query(sql, [params.password,params.phone], function (err, result) {
+    if (err) {
+      res.json({
+        status: 1,
+        msg: "用户名或者密码错误"
+      });
+    }
+    if (result.length) {
+      obj = result[0];
+      //console.log(result);
+      //res.send(result);
+      res.json({
+        status: 0,
+        msg: "修改成功",
+        obj
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "登录失败"
+      })
+    }
+  });
+})
 //手机号登录
 router.post('/loginUserphone', (req, res) => {
   var sql = $sql.user.loginphone;
