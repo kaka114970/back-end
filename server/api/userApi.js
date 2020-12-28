@@ -49,6 +49,35 @@ router.post('/loginUser', (req, res) => {
     }
   });
 })
+//手机号登录
+router.post('/loginUserphone', (req, res) => {
+  var sql = $sql.user.loginphone;
+  var params = req.body;
+  var obj = {};
+  conn.query(sql, [params.phone], function (err, result) {
+    if (err) {
+      res.json({
+        status: 1,
+        msg: "手机号或者验证码错误"
+      });
+    }
+    if (result.length) {
+      obj = result[0];
+      //console.log(result);
+      //res.send(result);
+      res.json({
+        status: 0,
+        msg: "登录成功",
+        obj
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "登录失败"
+      })
+    }
+  });
+})
 //管理员登录接口 done
 router.post('/loginAdmin', (req, res) => {
   var sql = $sql.admin_user.login;
