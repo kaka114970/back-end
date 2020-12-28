@@ -10,7 +10,7 @@ var sqlMap = {
     add: 'insert into user(username,phone,password) values(?, ?, ?)',
     search: "select * from user",
     searchId: "select * from user where userId = ?",
-    login: "select * from user where username = ? and password = ?",
+    login: "select * from user where phone = ? and password = ?",
     searchUsername: "select * from user where username = ?"
   },
   Remark: {

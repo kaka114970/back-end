@@ -25,7 +25,7 @@ router.post('/loginUser', (req, res) => {
   var sql = $sql.user.login;
   var params = req.body;
   var obj = {};
-  conn.query(sql, [params.username, params.password], function (err, result) {
+  conn.query(sql, [params.phone, params.password], function (err, result) {
     if (err) {
       res.json({
         status: 1,
