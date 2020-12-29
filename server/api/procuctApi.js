@@ -388,4 +388,28 @@ router.get('/serchdbuy', (req, res) => {
     }
   })
 })
+//删除特定购物车数据
+router.post('/delate', (req, res) => {
+  var sql = $sql.order.delate;
+  var params = req.body;
+  var obj = {};
+  conn.query(sql, [params.Id], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      obj = result[0];
+      res.json({
+        status: 0,
+        msg: "添加成功",
+        result
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "没有商品"
+      });
+    }
+  })
+})
 module.exports = router

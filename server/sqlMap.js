@@ -45,6 +45,7 @@ var sqlMap = {
     serchall:"SELECT * FROM `test`.`order` ORDER BY `state`",
     serchdelive:"SELECT * FROM `test`.`order` where state = '未发货'",
     serchdbuy:"SELECT * FROM `test`.`order` where state = '未收货'",
+    delate:"DELETE FROM `test`.`order` WHERE `id` = ?"
   }
 }
 
