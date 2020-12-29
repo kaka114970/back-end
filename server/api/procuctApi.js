@@ -126,7 +126,7 @@ router.post('/searchProductinput', (req, res) => {
           })
         }(i);
       }
-      setInterval(function () {
+      setTimeout(function () {
         console.log(2);
         res.json({
           status: 0,
@@ -229,9 +229,6 @@ router.get('/searchLogo', (req, res) => {
       console.log(err)
     }
     if (result.length) {
-      //console.log(result)
-      //res.send(result)
-      //obj = result[0];
       res.json({
         status: 0,
         msg: "查询成功",
@@ -246,4 +243,149 @@ router.get('/searchLogo', (req, res) => {
   })
 })
 
+//获取logo
+router.post('/searchLogoid', (req, res) => {
+  var sql = $sql.logo.searchId;
+  var params = req.body;
+  var obj = {};
+  conn.query(sql, [params.logoid], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result.length) {
+      //console.log(result)
+      //res.send(result)
+      obj = result[0];
+      res.json({
+        status: 0,
+        msg: "查询成功",
+        result
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "没有商品"
+      });
+    }
+  })
+})
+
+//添加购物车
+router.post('/addorder', (req, res) => {
+  var sql = $sql.order.addorder;
+  var params = req.body;
+  var obj = {};
+  conn.query(sql, [
+    params.productId,
+    params.color,
+    params.size,
+    params.price,
+    params.img,
+    params.title], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      obj = result[0];
+      res.json({
+        status: 0,
+        msg: "添加成功",
+        result
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "没有商品"
+      });
+    }
+  })
+})
+//查看所有订单
+router.get('/serchall', (req, res) => {
+  var sql = $sql.order.serchall
+  //var obj = {};
+  conn.query(sql, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result.length) {
+      res.json({
+        status: 0,
+        msg: "查询成功",
+        result
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "没有商品"
+      });
+    }
+  })
+})
+//查看未付款
+router.get('/serch', (req, res) => {
+  var sql = $sql.order.serch
+  //var obj = {};
+  conn.query(sql, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result.length) {
+      res.json({
+        status: 0,
+        msg: "查询成功",
+        result
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "没有商品"
+      });
+    }
+  })
+})
+//查看未发货
+router.get('/serchdelive', (req, res) => {
+  var sql = $sql.order.serchdelive
+  //var obj = {};
+  conn.query(sql, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result.length) {
+      res.json({
+        status: 0,
+        msg: "查询成功",
+        result
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "没有商品"
+      });
+    }
+  })
+})
+//查看未收货
+router.get('/serchdbuy', (req, res) => {
+  var sql = $sql.order.serchdbuy
+  //var obj = {};
+  conn.query(sql, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result.length) {
+      res.json({
+        status: 0,
+        msg: "查询成功",
+        result
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "没有商品"
+      });
+    }
+  })
+})
 module.exports = router
