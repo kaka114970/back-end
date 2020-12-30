@@ -401,7 +401,7 @@ router.post('/delate', (req, res) => {
       obj = result[0];
       res.json({
         status: 0,
-        msg: "添加成功",
+        msg: "删除成功",
         result
       });
     } else {
@@ -412,4 +412,50 @@ router.post('/delate', (req, res) => {
     }
   })
 })
+//查看所有评论
+router.get('/serchcommand', (req, res) => {
+  var sql = $sql.command.searchcommand
+  //var obj = {};
+  conn.query(sql, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result.length) {
+      res.json({
+        status: 0,
+        msg: "查询成功",
+        result
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "没有商品"
+      });
+    }
+  })
+})
+//插入评论
+router.post('/addcommand', (req, res) => {
+  var sql = $sql.command.addcommand
+  //var obj = {};
+  var params = req.body;
+  conn.query(sql,[params.command], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      res.json({
+        status: 0,
+        msg: "查询成功",
+        result
+      });
+    } else {
+      res.json({
+        status: 1,
+        msg: "没有商品"
+      });
+    }
+  })
+})
+
 module.exports = router

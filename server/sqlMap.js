@@ -46,7 +46,12 @@ var sqlMap = {
     serchdelive:"SELECT * FROM `test`.`order` where state = '未发货'",
     serchdbuy:"SELECT * FROM `test`.`order` where state = '未收货'",
     delate:"DELETE FROM `test`.`order` WHERE `id` = ?"
+  },
+  command: {
+    searchcommand:"SELECT * FROM `test`.`command`",
+    addcommand:"INSERT INTO `test`.`command`(`nico`, `header`, `command`, `commandID`) VALUES ('谜之用户', '/src/assets/img/mv3.jpg',?, NULL)"
   }
+  
 }
 
 module.exports = sqlMap;
