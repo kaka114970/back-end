@@ -10,7 +10,7 @@ var sqlMap = {
     add: 'insert into user(username,phone,password) values(?, ?, ?)',
     searchphone: "select * from user where phone = ? and islogin = 0",
     search: "select * from user",
-    searchId: "select * from user where userId = ?",
+    searchId: "select * from user where phone = ?",
     login: "select * from user where phone = ? and password = ? and islogin = 0",
     loginend:"UPDATE `test`.`user` SET `islogin` = 1 WHERE phone = ?",
     outlogin:"UPDATE `test`.`user` SET `islogin` = 0 WHERE phone = ?",
@@ -48,7 +48,7 @@ var sqlMap = {
     delate:"DELETE FROM `test`.`order` WHERE `id` = ?"
   },
   command: {
-    searchcommand:"SELECT * FROM `test`.`command`",
+    searchcommand:"SELECT * FROM `test`.`command` ORDER BY `commandID` DESC",
     addcommand:"INSERT INTO `test`.`command`(`nico`, `header`, `command`, `commandID`) VALUES ('谜之用户', '/src/assets/img/mv3.jpg',?, NULL)"
   }
   

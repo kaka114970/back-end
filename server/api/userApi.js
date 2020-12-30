@@ -208,7 +208,7 @@ router.post('/searchUserId', (req, res) => {
   var sql = $sql.user.searchId
   var params = req.body;
   var obj = {};
-  conn.query(sql, [params.userId], function (err, result) {
+  conn.query(sql, [params.phone], function (err, result) {
     if (err) {
       console.log(err);
     }
